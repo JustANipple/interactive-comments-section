@@ -1,0 +1,51 @@
+.container_vote {
+    --vote-bg-clr: var(--very-light-gray);
+    --vote-score-clr: var(--moderate-blue);
+    --vote-score-weight: var(--fw-medium);
+
+    padding: .75rem 1rem;
+    margin: auto auto;
+    background-color: var(--vote-bg-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6.25rem;
+    border-radius: .75rem;
+}
+
+.vote_plus,
+.vote_minus {
+    aspect-ratio: 1/1;
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+}
+
+.vote_plus {
+    margin-inline-end: auto;
+}
+
+.vote_minus {
+    margin-inline-start: auto;
+}
+
+.vote_score {
+    font-family: var(--ff);
+    line-height: 1;
+    color: var(--vote-score-clr);
+    font-weight: var(--vote-score-weight);
+}
+
+@media screen and (min-width: 768px) {
+    .container_vote {
+        width: 2.5rem;
+        padding: .75rem;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .vote_plus,
+    .vote_minus {
+        margin: 0;
+    }
+}

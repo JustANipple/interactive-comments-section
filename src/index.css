@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+#root, #__next {
+  isolation: isolate;
+}
+
+/* == Custom properties == */
+:root {
+    /* = Colors = */
+    /* Primary */
+    --moderate-blue: hsl(238, 40%, 52%);
+    --soft-red: hsl(358, 79%, 66%);
+    --light-grayish-blue: hsl(239, 57%, 85%);
+    --pale-red: hsl(357, 100%, 86%);
+    /* Neutral */
+    --dark-blue: hsl(212, 24%, 26%);
+    --grayish-blue: hsl(211, 10%, 45%);
+    --light-gray: hsl(223, 19%, 93%);
+    --very-light-gray: hsl(228, 33%, 97%);
+    --white: hsl(0, 0%, 100%);
+
+    /* = Font = */
+    --ff: 'Rubik', sans-serif;
+    --fs: 1rem;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-bold: 700;
+}
