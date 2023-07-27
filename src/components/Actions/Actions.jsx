@@ -1,16 +1,16 @@
 import styles from "./Actions.module.css"
 
 // eslint-disable-next-line react/prop-types
-const ActionBtn = ({ types }) => {
+const Actions = ({ types }) => {
 
     function buildUrl(type) {
         return `images/icon-${type}.svg`;
-    }   
+    }
 
-    function ActionBtn(type) {
+    function ActionBtn(type, index) {
         return (
-            <button className={styles.action_button}>
-                <img 
+            <button className={styles.action_button} key={index}>
+                <img
                     src={buildUrl(type)}
                     alt={`${type} button`}
                 />
@@ -25,9 +25,9 @@ const ActionBtn = ({ types }) => {
     return (
         <div className={styles.container_action_buttons}>
             {/* eslint-disable-next-line react/prop-types */}
-            {types.map((type) => ActionBtn(type))}
+            {types.map((type, index) => ActionBtn(type, index))}
         </div>
     )
 }
 
-export default ActionBtn
+export default Actions

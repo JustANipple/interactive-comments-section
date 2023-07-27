@@ -4,27 +4,27 @@ import Vote from "../Vote/Vote"
 import styles from "./Comment.module.css"
 
 // eslint-disable-next-line react/prop-types
-const Comment = () => {
-
+const Comment = ({ id, content, createdAt, score, user, replies, currentUser}) => {
     return (
-        <div className={styles.container_comment}>
-            <Avatar 
-                name={"amyrobson"}
-                createdAt={"1 month ago"}
-                currentUser={{
-                    username: "sam"
-                }}
-            />
-            <p className={styles.comment_content}>
-                Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You&apos;ve nailed the design and the responsiveness at varoius breakpoints works really well. 
-            </p>
-            <Vote 
-                score={12}
-            />
-            <Actions 
-                types={["delete", "reply"]}
-            />
-        </div>
+        <>
+            <div className={styles.container_comment} key={id}>
+                <Avatar 
+                    // eslint-disable-next-line react/prop-types
+                    user={user}
+                    createdAt={createdAt}
+                    currentUser={currentUser}
+                />
+                <p className={styles.comment_content}>{content}</p>
+                <Vote 
+                    score={score}
+                />
+                <Actions 
+                    // eslint-disable-next-line react/prop-types
+                    types={currentUser === user.username ? ["delete", "edit"] : ["reply"]}
+                />
+            </div>
+        </>
+        
     )
 }
 

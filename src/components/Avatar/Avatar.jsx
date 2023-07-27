@@ -1,31 +1,25 @@
 import styles from "./Avatar.module.css"
 
 // eslint-disable-next-line react/prop-types
-const Avatar = ({ name, createdAt, currentUser }) => {
-
-    function buildPngUrl(name) {
-        return `./images/avatars/image-${name}.png`
-    }
-
-    function buildWebpUrl(name) {
-        return `./images/avatars/image-${name}.webp`
-    }
-
+const Avatar = ({ user, createdAt, currentUser }) => {
     return (
         <div className={styles.container_avatar}>
             <picture className={styles.avatar_picture}>
                 <source 
-                    srcSet={buildWebpUrl(name)}
+                    // eslint-disable-next-line react/prop-types
+                    srcSet={user.image.webp}
                     type="image/webp"
                 />
                 <img 
-                    src={buildPngUrl(name)} 
+                    // eslint-disable-next-line react/prop-types
+                    src={user.image.png} 
                     alt="avatar profile image" 
                 />
             </picture>
-            <p className={styles.avatar_name}>{name}</p>
+            {/* eslint-disable-next-line react/prop-types */}
+            <p className={styles.avatar_name}>{user.username}</p>
             {/*eslint-disable-next-line react/prop-types*/}
-            {currentUser.username === name ? 
+            {currentUser === user.username ? 
                 <p className={styles.avatar_current_user}>you</p>
                 :
                 ""
