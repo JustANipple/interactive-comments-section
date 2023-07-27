@@ -24,7 +24,6 @@ const Comment = ({ id, content, createdAt, score, user, replies, currentUser}) =
                 />
             </div>
         </>
-        
     )
 }
 
