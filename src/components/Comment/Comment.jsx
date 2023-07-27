@@ -1,4 +1,4 @@
-import ActionBtn from "../ActionBtn/ActionBtn"
+import Actions from "../Actions/Actions"
 import Avatar from "../Avatar/Avatar"
 import Vote from "../Vote/Vote"
 import styles from "./Comment.module.css"
@@ -21,10 +21,9 @@ const Comment = () => {
             <Vote 
                 score={12}
             />
-            <div className={styles.container_action_buttons}>
-                <ActionBtn type={"delete"} />
-                <ActionBtn type={"reply"} />
-            </div>
+            <Actions 
+                types={["delete", "reply"]}
+            />
         </div>
     )
 }

@@ -1,9 +1,17 @@
-.action_button {
+.container_action_buttons {
     /* Variables */
     --action-font-family: var(--ff);
     --type-text-color: var(--moderate-blue);
     --type-text-color-delete: var(--soft-red);
     --type-text-weight: var(--fw-medium);
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.action_button {
     /* Reset button */
     padding: 0;
     border: 0;
@@ -30,6 +38,12 @@
 }
 
 @media screen and (min-width: 768px) {
+    .container_action_buttons {
+        /* Grid positioning */
+        grid-row: 1;
+        grid-column: 3; 
+    }
+
     .action_button {
         margin-inline-start: 0;
     }
