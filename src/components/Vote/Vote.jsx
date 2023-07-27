@@ -1,16 +1,17 @@
 import { useState } from "react"
 import styles from "./Vote.module.css"
 
-const Vote = () => {
+// eslint-disable-next-line react/prop-types
+const Vote = ({ score }) => {
 
-    const [vote, setVote] = useState(0);
+    const [vote, setVote] = useState(score);
 
     function handlePlusClick() {
         setVote(vote + 1);
     }
 
     function handleMinusClick() {
-        setVote(vote - 1)
+        setVote(vote - 1);
     }
 
     return (

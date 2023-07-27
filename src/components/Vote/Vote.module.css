@@ -1,16 +1,21 @@
 .container_vote {
+    /* Variables */
     --vote-bg-clr: var(--very-light-gray);
     --vote-score-clr: var(--moderate-blue);
     --vote-score-weight: var(--fw-medium);
+    --score-font-family: var(--ff);
 
     padding: .75rem 1rem;
-    margin: auto auto;
     background-color: var(--vote-bg-clr);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 6.25rem;
     border-radius: .75rem;
+    max-height: 6.25rem;
+    /* Grid positioning */
+    grid-row: 3;
+    grid-column: 1;
 }
 
 .vote_plus,
@@ -30,7 +35,7 @@
 }
 
 .vote_score {
-    font-family: var(--ff);
+    font-family: var(--score-font-family);
     line-height: 1;
     color: var(--vote-score-clr);
     font-weight: var(--vote-score-weight);
@@ -42,10 +47,19 @@
         padding: .75rem;
         flex-direction: column;
         gap: 1.25rem;
+        /* Grid positioning */
+        grid-row: 1/4;
+        grid-column: 1;
     }
 
     .vote_plus,
     .vote_minus {
         margin: 0;
+    }
+
+    .vote_minus:hover,
+    .vote_plus:hover {
+        filter: brightness(0) invert(36%) sepia(14%) saturate(3827%) hue-rotate(208deg) brightness(89%) contrast(86%);
+        cursor: pointer;
     }
 }

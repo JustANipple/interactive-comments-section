@@ -1,11 +1,11 @@
 import './App.css'
-import Vote from './components/Vote/Vote'
+import Comment from "./components/Comment/Comment"
 
 function App() {
 
   return (
     <>
-      <Vote />
+      <Comment />
     </>
   )
 }

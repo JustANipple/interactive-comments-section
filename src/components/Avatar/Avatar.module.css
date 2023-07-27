@@ -1,0 +1,51 @@
+.container_avatar {
+    /* Variables */
+    --font-family: var(--ff);
+    --avatar-name-clr: var(--dark-blue);
+    --avatar-name-weight: var(--fw-medium);
+    --current-user-bg-clr: var(--moderate-blue);
+    --current-user-txt-clr: var(--white);
+    --current-user-weight: var(--fw-medium);
+    --created-at-color: var(--grayish-blue);
+
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-family: var(--font-family);
+    width: fit-content;
+    /* Grid positioning */
+    grid-row: 1;
+    grid-column: 1/3;
+}
+
+.avatar_picture {
+    max-width: 2rem;
+}
+
+.avatar_name {
+    color: var(--avatar-name-clr);
+    font-weight: var(--avatar-name-weight);
+}
+
+.avatar_current_user {
+    font-size: .75rem;
+    font-weight: var(--current-user-weight);
+    padding-block: .125rem .25rem;
+    padding-inline: .375rem;
+    line-height: 1;
+    background-color: var(--current-user-bg-clr);
+    color: var(--current-user-txt-clr);
+    border-radius: .125rem;
+}
+
+.avatar_created_at {
+    color: var(--created-at-color);
+}
+
+@media screen and (min-width: 768px) {
+    .container_avatar {
+        /* Grid positioning */
+        grid-row: 1;
+        grid-column: 2;
+    }
+}

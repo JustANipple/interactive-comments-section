@@ -1,0 +1,41 @@
+.action_button {
+    /* Variables */
+    --action-font-family: var(--ff);
+    --type-text-color: var(--moderate-blue);
+    --type-text-color-delete: var(--soft-red);
+    --type-text-weight: var(--fw-medium);
+    /* Reset button */
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    transition: opacity .125s ease-in-out;
+    /* Grid positioning */
+    grid-row: 3;
+    grid-column: 2;
+}
+
+.button_type {
+    font-family: var(--action-font-family);
+    color: var(--type-text-color);
+    text-transform: capitalize;
+    font-weight: var(--type-text-weight);
+}
+
+.delete {
+    color: var(--type-text-color-delete);
+}
+
+@media screen and (min-width: 768px) {
+    .action_button {
+        margin-inline-start: 0;
+    }
+
+    .action_button:hover {
+        opacity: 50%;
+        cursor: pointer;
+    }
+}
