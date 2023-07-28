@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Actions from "../Actions/Actions"
 import Avatar from "../Avatar/Avatar"
 import Vote from "../Vote/Vote"
@@ -5,6 +6,28 @@ import styles from "./Comment.module.css"
 
 // eslint-disable-next-line react/prop-types
 const Comment = ({ id, content, createdAt, score, user, replies=[] , currentUser, replyingTo=""}) => {
+
+    /* Prop types disabled for the entire Reply component */
+    function Reply({ id, reply, index }) {
+        return (
+            <div 
+                key={id} 
+                className={`${styles.reply} ${index === replies.length - 1 ? styles.last : ""}`}
+            > 
+                <div className={styles.reply_line}></div>
+                <Comment 
+                    /* json data */
+                    currentUser={currentUser}
+                    content={reply.content}
+                    createdAt={reply.createdAt}
+                    score={reply.score}
+                    user={reply.user}
+                    replies={reply.replies}
+                    replyingTo={reply.replyingTo}
+                />
+            </div>
+        )
+    }
 
     return (
         <>
@@ -27,32 +50,8 @@ const Comment = ({ id, content, createdAt, score, user, replies=[] , currentUser
                     types={currentUser === user.username ? ["delete", "edit"] : ["reply"]}
                 />
             </div>
-
-            {replies.length > 0 ? 
-                replies.map((reply, index) => {
-                    return (
-                        <div 
-                            key={index} 
-                            className={`${styles.reply} ${index === replies.length - 1 ? styles.last : ""}`}
-                        > 
-                            <div className={styles.reply_line}></div>
-                            <Comment 
-                                /* json data */
-                                currentUser={currentUser}
-                                key={reply.id}
-                                content={reply.content}
-                                createdAt={reply.createdAt}
-                                score={reply.score}
-                                user={reply.user}
-                                replies={reply.replies}
-                                replyingTo={reply.replyingTo}
-                            />
-                        </div>
-                    )
-                })
-                : 
-                "" 
-            }
+            {/* eslint-disable-next-line react/jsx-key */}
+            {replies.length > 0 ? replies.map((reply, index) => <Reply key={reply.id} reply={reply} index={index}/>) : ""}
         </>
     )
 }
