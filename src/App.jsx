@@ -1,5 +1,6 @@
 import './App.css'
 import Comment from "./components/Comment/Comment"
+import Post from './components/Post/Post'
 import data from "./data.json"
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
           />
         )
       })}
+      <Post 
+        currentUser={data.currentUser}
+      />
     </main>
   )
 }
