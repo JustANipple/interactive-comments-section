@@ -5,7 +5,7 @@ import Vote from "../Vote/Vote"
 import styles from "./Comment.module.css"
 
 // eslint-disable-next-line react/prop-types
-const Comment = ({ id, content, createdAt, score, user, replies=[] , currentUser, replyingTo=""}) => {
+const Comment = ({ id, content, createdAt, score=0, user, replies=[] , currentUser, replyingTo=""}) => {
 
     /* Prop types disabled for the entire Reply component */
     function Reply({ id, reply, index }) {
@@ -13,8 +13,7 @@ const Comment = ({ id, content, createdAt, score, user, replies=[] , currentUser
             <div 
                 key={id} 
                 className={`${styles.reply} ${index === replies.length - 1 ? styles.last : ""}`}
-            > 
-                <div className={styles.reply_line}></div>
+            >
                 <Comment 
                     /* json data */
                     currentUser={currentUser}

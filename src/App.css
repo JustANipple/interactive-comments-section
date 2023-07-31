@@ -1,5 +1,22 @@
+body {
+    background-color: var(--very-light-gray);
+}
+
 .main {
     padding: 2rem 1rem;
     display: grid;
-    row-gap: 1rem;
+    row-gap: 1.5rem;
+}
+
+.comments {
+    max-width: 45.625rem;
+    display: grid;
+    row-gap: 1.25rem;
+}
+
+@media screen and (min-width: 768px) {
+    .main {
+        padding-block: 4rem;
+        justify-items: center;
+    }
 }

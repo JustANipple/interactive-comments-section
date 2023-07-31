@@ -15,7 +15,8 @@ const Actions = ({ types }) => {
                     alt={`${type} button`}
                 />
                 {/*eslint-disable-next-line react/prop-types*/}
-                <p className={`${styles.button_type} ${type === "delete" ? styles.delete : ""}`}>
+                <p className={`${styles.button_type}
+                    ${type === "delete" ? styles.delete : ""}`}>
                     {type}
                 </p>
             </button>

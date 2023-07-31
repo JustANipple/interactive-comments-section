@@ -1,7 +1,26 @@
 import styles from "./Post.module.css"
+import Comment from "../Comment/Comment"
+import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const Post = ({ currentUser }) => {
+const Post = ({ currentUser, type }) => {
+
+    const [comment, setComment] = useState(
+        <Comment 
+            content={""}
+            createdAt={"now"}
+            user={currentUser}
+            currentUser={currentUser}
+        />
+    )
+
+    function handleClick(e) {
+        e.preventDefault();
+        const textContent = e.target.parentElement.querySelector("textarea").value;
+        const comments = document.querySelector(".comments");
+        comments.append(comment);
+    }
+
     return (
         <form className={styles.post}>
             <label htmlFor="comment">
@@ -21,9 +40,13 @@ const Post = ({ currentUser }) => {
             <textarea 
                 className={styles.post_textarea} 
                 name="comment" 
-                id="comment"    
-                required
+                id="comment"
+                placeholder="Add a comment..."
             ></textarea>
+            <button 
+                className={styles.post_btn}
+                onClick={(e) => handleClick(e)}
+            >{type}</button>
         </form>
     )
 }
