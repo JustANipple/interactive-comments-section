@@ -48,8 +48,7 @@
         flex-direction: column;
         gap: 1.25rem;
         /* Grid positioning */
-        grid-row: 1/4;
-        grid-column: 1;
+        grid-area: vote;
     }
 
     .vote_plus,

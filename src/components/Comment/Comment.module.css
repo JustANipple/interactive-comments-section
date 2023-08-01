@@ -52,12 +52,15 @@
     .container_comment {
         padding: 1.5rem;
         column-gap: 1.5rem;
+        grid-template-areas: 
+        "vote avatar avatar button"
+        "vote comment comment comment";
+        grid-template-columns: repeat(3, min-content);
     }
 
     .comment_content {
         /* Grid positioning */
-        grid-row: 2/4;
-        grid-column: 2/4;
+        grid-area: comment;
     }
 
     .reply {

@@ -4,15 +4,6 @@ import Post from './components/Post/Post'
 import data from "./data.json"
 
 function App() {
-  
-  if(localStorage.getItem("comment 1") === null ||
-      localStorage.getItem("currentuser") === null) {
-        data.comments.map((comment) => {
-          localStorage.setItem(`comment ${comment.id}`, JSON.stringify(comment));
-        })
-        localStorage.setItem("currentuser", JSON.stringify(data.currentUser));
-  }
-
 
   return (
     <main className='main'>

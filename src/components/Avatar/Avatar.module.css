@@ -19,7 +19,7 @@
 }
 
 .avatar_picture {
-    max-width: 2rem;
+    width: 2rem;
 }
 
 .avatar_name {
@@ -40,12 +40,16 @@
 
 .avatar_created_at {
     color: var(--created-at-color);
+    min-width: fit-content;
 }
 
 @media screen and (min-width: 768px) {
     .container_avatar {
         /* Grid positioning */
-        grid-row: 1;
-        grid-column: 2;
+        grid-area: avatar;
+    }
+
+    .avatar_picture {
+        min-width: 2rem;
     }
 }
