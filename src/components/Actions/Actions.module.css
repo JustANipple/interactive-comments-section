@@ -18,7 +18,7 @@
     background-color: transparent;
 
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: .5rem;
     transition: opacity .125s ease-in-out;
     /* Grid positioning */

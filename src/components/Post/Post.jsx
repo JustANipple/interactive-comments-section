@@ -1,24 +1,43 @@
+import Actions from "../Actions/Actions";
 import styles from "./Post.module.css"
-import Comment from "../Comment/Comment"
-import { useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const Post = ({ currentUser, type }) => {
-
-    const [comment, setComment] = useState(
-        <Comment 
-            content={""}
-            createdAt={"now"}
-            user={currentUser}
-            currentUser={currentUser}
-        />
-    )
+const Post = ({ currentUser, type, data, setData }) => {
 
     function handleClick(e) {
         e.preventDefault();
-        const textContent = e.target.parentElement.querySelector("textarea").value;
-        const comments = document.querySelector(".comments");
-        comments.append(comment);
+        const textContent = e.target.parentElement.parentElement.querySelector("textarea").value;
+        if(textContent !== "") {
+            //Clone comments array
+            // eslint-disable-next-line react/prop-types
+            const updatedComments = [...data.comments];
+            //Push new comment into the cloned array
+            updatedComments.push(
+                {
+                    // eslint-disable-next-line react/prop-types
+                    "id": data.comments.length + 1,
+                    "content": textContent,
+                    "createdAt": "now",
+                    "score": 0,
+                    "user": {
+                    "image": { 
+                        // eslint-disable-next-line react/prop-types
+                        "png": currentUser.image.png,
+                        // eslint-disable-next-line react/prop-types
+                        "webp": currentUser.image.webp
+                    },
+                    // eslint-disable-next-line react/prop-types
+                    "username": currentUser.username
+                    },
+                    "replies": []
+                }
+            )
+            const newData = {...data, comments: updatedComments};
+            //Set the state with updated array
+            setData(newData);
+            //Save new state in localStorage
+            localStorage.setItem("data", JSON.stringify(newData));
+            }
     }
 
     return (

@@ -10,6 +10,7 @@
     row-gap: 1rem;
     border-radius: .5rem;
     background-color: var(--white);
+    overflow: hidden;
 }
 
 .reply {
