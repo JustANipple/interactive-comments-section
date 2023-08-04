@@ -53,6 +53,8 @@ const Comment = ({ id, comment, data, setData }) => {
                             id={localStorage.getItem("id")}
                             category={"act"}
                             type={"delete"}
+                            data={data}
+                            setData={setData}
                         />
                     : ""}
                     <Actions 

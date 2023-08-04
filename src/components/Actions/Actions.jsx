@@ -62,14 +62,14 @@ const Actions = ({ id, category, type, data, setData }) => {
     }
 
     function handleDelete(e) {
-        console.log("delete: " + id);
     }
+      
+      
 
 
 
     function handleUpdate() {}
     function handleReply() {}
-
     function handleEdit() {}
 
     return (
