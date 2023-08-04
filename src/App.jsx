@@ -6,34 +6,40 @@ import jsonData from "./data.json"
 
 function App() {
 
+  //checks if data exists in localStorage, otherwise sets it
   if(localStorage.getItem("data") === null) {
     localStorage.setItem("data", JSON.stringify(jsonData));
   }
+
+  //saves data in a state to add, edit and remove content
   const [data, setData] = useState(JSON.parse(localStorage.getItem("data")));
 
-  console.log(data.comments);
+  //creates a global variable to create keys for components
+  localStorage.setItem("id", 0);
+  //generates a new key and saves it into localStorage
+  function generateKey() {
+    const key = localStorage.getItem("id");
+    const parsedId = parseInt(key) + 1;
+    localStorage.setItem("id", parsedId);
+    return parsedId;
+  }
 
   return (
     <main className='main'>
       <div className='comments'>
         {data.comments.map((comment) => {
           return (
-            <Comment 
-              /* Comment variables */
-              key={comment.id}
-              content={comment.content}
-              createdAt={comment.createdAt}
-              score={comment.score}
-              user={comment.user}
-              replies={comment.replies}
-              /* Current user */
-              currentUser={data.currentUser.username}
+            <Comment
+              key={generateKey()}
+              id={localStorage.getItem("id")}
+              comment={comment}
+              data={data}
+              setData={setData}
             />
           )
         })}
       </div>
       <Post 
-        currentUser={data.currentUser}
         type={"send"}
         data={data}
         setData={setData}

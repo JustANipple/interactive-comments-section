@@ -2,6 +2,7 @@ import styles from "./Avatar.module.css"
 
 // eslint-disable-next-line react/prop-types
 const Avatar = ({ user, createdAt, currentUser }) => {
+    // eslint-disable-next-line react/prop-types
     return (
         <div className={styles.container_avatar}>
             <picture className={styles.avatar_picture}>

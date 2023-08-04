@@ -10,8 +10,7 @@ import postStyles from "../Post/Post.module.css"
 */
 
 // eslint-disable-next-line react/prop-types
-const Actions = ({ category, type, data, setData, currentUser }) => {
-
+const Actions = ({ id, category, type, data, setData }) => {
     function buildUrl(type) {
         return `images/icon-${type}.svg`;
     }
@@ -37,19 +36,19 @@ const Actions = ({ category, type, data, setData, currentUser }) => {
             updatedComments.push(
                 {
                     // eslint-disable-next-line react/prop-types
-                    "id": data.comments.length + 1,
+                    "id": id,
                     "content": textContent,
                     "createdAt": "now",
                     "score": 0,
                     "user": {
                     "image": { 
                         // eslint-disable-next-line react/prop-types
-                        "png": currentUser.image.png,
+                        "png": data.currentUser.image.png,
                         // eslint-disable-next-line react/prop-types
-                        "webp": currentUser.image.webp
+                        "webp": data.currentUser.image.webp
                     },
                     // eslint-disable-next-line react/prop-types
-                    "username": currentUser.username
+                    "username": data.currentUser.username
                     },
                     "replies": []
                 }
@@ -63,6 +62,7 @@ const Actions = ({ category, type, data, setData, currentUser }) => {
     }
 
     function handleDelete(e) {
+        console.log("delete: " + id);
     }
 
 
@@ -73,7 +73,7 @@ const Actions = ({ category, type, data, setData, currentUser }) => {
     function handleEdit() {}
 
     return (
-        <button 
+        <button
             className={`${category === "post" ? postStyles.post_btn : styles.action_button}`}
             onClick={(e) => handleEvents(category, type, e)}
             >

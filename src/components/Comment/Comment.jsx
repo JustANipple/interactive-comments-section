@@ -6,28 +6,26 @@ import styles from "./Comment.module.css"
 import btnStyles from "../Actions/Actions.module.css"
 
 // eslint-disable-next-line react/prop-types
-const Comment = ({ 
-                commentKey, content, createdAt, score=0, user, replies=[],
-                currentUser, 
-                replyingTo=""
-            }) => {
+const Comment = ({ id, comment, data, setData }) => {
+  //generates a new key and saves it into localStorage
+  function generateKey() {
+    const key = localStorage.getItem("id");
+    const parsedId = parseInt(key) + 1;
+    localStorage.setItem("id", parsedId);
+    return parsedId;
+  }
 
     /* Prop types disabled for the entire Reply component */
-    function Reply({ commentKey, reply, index }) {
+    function Reply({ id, reply }) {
         return (
             <div 
-                key={commentKey} 
-                className={`${styles.reply} ${index === replies.length - 1 ? styles.last : ""}`}
+                className={`${styles.reply}`}
             >
-                <Comment 
-                    /* json data */
-                    currentUser={currentUser}
-                    content={reply.content}
-                    createdAt={reply.createdAt}
-                    score={reply.score}
-                    user={reply.user}
-                    replies={reply.replies}
-                    replyingTo={reply.replyingTo}
+                <Comment
+                    id={id}
+                    comment={reply}
+                    data={data}
+                    setData={setData}
                 />
             </div>
         )
@@ -35,28 +33,30 @@ const Comment = ({
 
     return (
         <>
-            <div key={commentKey} className={styles.container_comment}>
+            <div className={styles.container_comment}>
                 <Avatar 
                     // eslint-disable-next-line react/prop-types
-                    user={user}
-                    createdAt={createdAt}
-                    currentUser={currentUser}
+                    user={comment.user}
+                    createdAt={comment.createdAt}
+                    currentUser={data.currentUser.username}
                 />
                 <p className={styles.comment_content}>
-                    {replyingTo !== "" ? <span className={styles.content_replying_to}>@{replyingTo} </span> : ""}
-                    {content}
+                    {"replyingTo" in comment  ? <span className={styles.content_replying_to}>@{comment.replyingTo} </span> : ""}
+                    {comment.content}
                 </p>
                 <Vote 
-                    score={score}
+                    score={comment.score}
                 />
                 <div className={btnStyles.container_action_buttons}>
-                    {currentUser === user.username ?
+                    {data.currentUser.username === comment.user.username ?
                         <Actions 
+                            id={localStorage.getItem("id")}
                             category={"act"}
                             type={"delete"}
                         />
                     : ""}
                     <Actions 
+                        id={localStorage.getItem("id")}
                         category={"act"}
                         type={"reply"}
                     />
@@ -64,7 +64,17 @@ const Comment = ({
 
             </div>
             {/* eslint-disable-next-line react/jsx-key */}
-            {replies.length > 0 ? replies.map((reply, index) => <Reply key={reply.id} reply={reply} index={index}/>) : ""}
+            {comment.replies && comment.replies.length > 0 ? 
+                comment.replies.map((reply) => {
+                    return (
+                        <Reply 
+                            key={generateKey()} 
+                            id={id}
+                            reply={reply}
+                        />
+                    )
+                })
+            : ""}
         </>
     )
 }
