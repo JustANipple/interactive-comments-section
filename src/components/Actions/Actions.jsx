@@ -61,7 +61,19 @@ const Actions = ({ id, category, type, data, setData }) => {
         }
     }
 
-    function handleDelete(e) {
+    function handleDelete() {
+        // eslint-disable-next-line react/prop-types
+        let updatedComments = [...data.comments];
+        
+        // eslint-disable-next-line react/prop-types
+        updatedComments = updatedComments.filter((comment) => comment.id !== parseInt(id));
+        
+        updatedComments = updatedComments.map((comment) => ({
+            ...comment,
+            replies: comment.replies.filter((reply) => reply.id !== parseInt(id))
+        }))
+        setData({...data, comments: updatedComments});
+        localStorage.setItem("data", JSON.stringify({...data, comments: updatedComments}));
     }
       
       
