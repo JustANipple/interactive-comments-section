@@ -3,6 +3,7 @@ import './App.css'
 import Comment from "./components/Comment/Comment"
 import Post from './components/Post/Post'
 import jsonData from "./data.json"
+import Modal from './components/Modal/Modal';
 
 function App() {
 
@@ -41,6 +42,10 @@ function App() {
       </div>
       <Post 
         type={"send"}
+        data={data}
+        setData={setData}
+      />
+      <Modal 
         data={data}
         setData={setData}
       />
