@@ -3,26 +3,53 @@ import postStyles from "../Post/Post.module.css"
 
 /*
     TODO:
-    2 types of buttons (post, interact)
+    2 types of buttons (post, act, modal)
     post btn: reply, update, send
     interact btn: reply, edit, delete
-    delete section btn: cancel, delete
+    modal btn: no, yes
 */
 
 // eslint-disable-next-line react/prop-types
-const Actions = ({ id, category, type, data, setData }) => {
+const Actions = ({ id, category, type, data, setData, modalState, setModalState }) => {
+
     function buildUrl(type) {
         return `images/icon-${type}.svg`;
     }
-    
-    function handleEvents(category, type, e) {
-        //post events: postReply, update, send
-        //act events: actReply, edit, delete
-        if(type === "send") {
-            handleSend(e);
-        } else if (type === "delete") {
-            handleDelete(e);
+
+    const buttonAndEvents = [
+        {category: "post",
+            typeEvents: [
+                {type: "send", event: handleSend},
+                //{type: "reply", event: handlePostReply},
+                //{type: "update", event: handleUpdate}
+            ]
+        },
+        {category: "act",
+            typeEvents: [
+                {type: "delete", event: handleDelete},
+                //{type: "reply", event: handleActReply},
+                //{type: "edit", event: handleEdit}
+            ]
+        },
+        {category: "modal",
+            typeEvents: [
+                {type: "no, cancel", event: handleModalNo},
+                {type: "yes, delete", event: handleModalYes}
+            ]
         }
+    ];
+    
+    //iterates through buttonAndEvents to assign events to buttons with category and type
+    function handleEvents(category, type, e) {
+        buttonAndEvents.forEach(obj => {
+            if (obj.category === category) {
+                obj.typeEvents.forEach(item => {
+                    if (item.type === type) {
+                        item.event(e);
+                    }
+                });
+            }
+        });
     }
 
     function handleSend(e) {
@@ -62,6 +89,14 @@ const Actions = ({ id, category, type, data, setData }) => {
     }
 
     function handleDelete() {
+        setModalState("visible");
+    }
+
+    function handleModalNo() {
+        
+    }
+
+    function handleModalYes() {
         // eslint-disable-next-line react/prop-types
         let updatedComments = [...data.comments];
         
@@ -75,14 +110,6 @@ const Actions = ({ id, category, type, data, setData }) => {
         setData({...data, comments: updatedComments});
         localStorage.setItem("data", JSON.stringify({...data, comments: updatedComments}));
     }
-      
-      
-
-
-
-    function handleUpdate() {}
-    function handleReply() {}
-    function handleEdit() {}
 
     return (
         <button

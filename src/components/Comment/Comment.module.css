@@ -26,13 +26,10 @@
     content: "";
     position: absolute;
     border: 1px solid var(--reply-line-border-clr);
-    height: 110%;
+    height: calc(100% + 1.25rem);
     left: -1rem;
+    bottom: 0;
     width: 1px;
-}
-
-.last::before {
-    height: 100%;
 }
 
 .comment_content {

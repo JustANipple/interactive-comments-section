@@ -15,6 +15,8 @@ function App() {
   //saves data in a state to add, edit and remove content
   const [data, setData] = useState(JSON.parse(localStorage.getItem("data")));
 
+  const [modalState, setModalState] = useState("hidden");
+
   //creates a global variable to create keys for components
   localStorage.setItem("id", 0);
   //generates a new key and saves it into localStorage
@@ -26,30 +28,34 @@ function App() {
   }
 
   return (
-    <main className='main'>
-      <div className='comments'>
-        {data.comments.map((comment) => {
-          return (
-            <Comment
-              key={generateKey()}
-              id={localStorage.getItem("id")}
-              comment={comment}
-              data={data}
-              setData={setData}
-            />
-          )
-        })}
-      </div>
-      <Post 
-        type={"send"}
-        data={data}
-        setData={setData}
-      />
-      <Modal 
-        data={data}
-        setData={setData}
-      />
-    </main>
+      <main className='main'>
+        <div className='comments'>
+          {data.comments.map((comment) => {
+            return (
+              <Comment
+                key={generateKey()}
+                id={localStorage.getItem("id")}
+                comment={comment}
+                data={data}
+                setData={setData}
+                modalState={modalState}
+                setModalState={setModalState}
+              />
+            )
+          })}
+        </div>
+        <Post 
+          type={"send"}
+          data={data}
+          setData={setData}
+        />
+        <Modal 
+          data={data}
+          setData={setData}
+          modalState={modalState}
+          setModalState={setModalState}
+        />
+      </main>
   )
 }
 

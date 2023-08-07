@@ -6,7 +6,8 @@ import styles from "./Comment.module.css"
 import btnStyles from "../Actions/Actions.module.css"
 
 // eslint-disable-next-line react/prop-types
-const Comment = ({ id, comment, data, setData }) => {
+const Comment = ({ id, comment, data, setData, modalState, setModalState }) => {
+
   //generates a new key and saves it into localStorage
   function generateKey() {
     const key = localStorage.getItem("id");
@@ -26,6 +27,8 @@ const Comment = ({ id, comment, data, setData }) => {
                     comment={reply}
                     data={data}
                     setData={setData}
+                    modalState={modalState}
+                    setModalState={setModalState}                    
                 />
             </div>
         )
@@ -55,12 +58,16 @@ const Comment = ({ id, comment, data, setData }) => {
                             type={"delete"}
                             data={data}
                             setData={setData}
+                            modalState={modalState}
+                            setModalState={setModalState}
                         />
                     : ""}
                     <Actions 
                         id={localStorage.getItem("id")}
                         category={"act"}
                         type={"reply"}
+                        modalState={modalState}
+                        setModalState={setModalState}
                     />
                 </div>
 
